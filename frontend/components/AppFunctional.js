@@ -2,9 +2,9 @@ import axios from 'axios'
 import React, { useState } from 'react'
 
 // önerilen başlangıç stateleri
-const initialMessage = ""
-const initialEmail = ''
-const initialSteps = 0
+const initialMessage = "";
+const initialEmail = "";
+const initialSteps = 0;
 
 
 export default function AppFunctional(props) {
@@ -13,7 +13,7 @@ export default function AppFunctional(props) {
   const [location,setLocation]=useState([2,2]);
   const [email,setEmail]=useState(initialEmail);
   const [count,setCount]=useState(initialSteps);
-  const [error,setError]=useState(initialMessage);
+  const [error,setError]=useState();
   
   const index=(Number(((location[1]-1)*3)+location[0]-1))
   
@@ -24,7 +24,7 @@ export default function AppFunctional(props) {
      else if(event.target.id=="right"){location[0]<3 ? setCount(count+1) & setLocation([location[0]+1,location[1]]):setError("Sağa gidemezsiniz")}
      else if(event.target.id=="up"){location [1]>1? setCount(count+1) &  setLocation([location[0],location[1]-1]):setError("Yukarıya gidemezsiniz")}
      else if(event.target.id=="down"){location[1]<3? setCount(count+1) & setLocation([location[0],location[1]+1]) : setError("Aşağıya gidemezsiniz")}
-     else if(event.target.id=="reset"){ setLocation([location[0]=2,location[1]=2]);setCount(0)};
+     else if(event.target.id=="reset"){ setLocation([location[0]=2,location[1]=2]);setCount(0);setEmail(initialEmail)};
   
   }
 
@@ -70,7 +70,7 @@ export default function AppFunctional(props) {
  
     axios.post("http://localhost:9000/api/result",nData)
     .then((res)=>{console.log(res.data);reset();
-      setError(((res.data.message)).replace(/"|'/g, ""))}).catch((error)=>{setError(((error.response.data.message).replace(/"|'/g, "")));
+      setError((res.data.message))}).catch((error)=>{setError((error.response.data.message));
   })
 
 
@@ -98,8 +98,8 @@ export default function AppFunctional(props) {
         }
       </div>
       <div className="info">
-        { error &&
-        <h3 id="message">{(error)}</h3>
+        {
+        <h3 id="message">{error}</h3>
       }
       </div>
       <div id="keypad">

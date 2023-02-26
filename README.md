@@ -67,7 +67,7 @@ Bu challengeda bir [WIDGET](https://advanced-react-grid.herokuapp.com/) için bi
 - `codegrade_mvp.test.js` den ilham alarak `frontend/components/App.test.js` içine 5 tane test kodu yazın:
   - Test dosyanızın içine seçtiğiniz bir bileşeni import edin, `AppFunctional.js`.
   - Başlıklardaki, butonlardaki, bağlantılardaki görünür metinlerin ekranda göründüğünü test edin.
-  - Inputa metin girildiğinde value değişimini test eden bir test yazın.
+  - Inputa metin girildiğinde value değişimini test eden bir test yazın .
 
 ### Gridle ilgili diğer notlar:
 
